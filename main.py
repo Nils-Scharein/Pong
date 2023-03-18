@@ -1,7 +1,7 @@
 import time
 from turtle import Turtle, Screen
 from Scoreboard import Scoreboard
-
+from Ball import Ball
 #setup variablen
 HEIGHT = 800
 WIDTH = 1200
@@ -42,11 +42,13 @@ def main():
     score.draw_score()
     while True:
         screen.update()
+        ball.move()
         score.increase_scorep1()
         score.increase_scorep2()
-        time.sleep(0.2)
+        time.sleep(0.1)
 
 score = Scoreboard(HEIGHT, WIDTH)
+ball = Ball()
 
 
 screen.listen()
