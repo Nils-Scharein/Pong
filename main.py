@@ -1,16 +1,56 @@
-# This is a sample Python script.
+import time
+from turtle import Turtle, Screen
+from Scoreboard import Scoreboard
 
-# Press Umschalt+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+#setup variablen
+HEIGHT = 800
+WIDTH = 1200
+UP = 90
+DOWN = 270
+LEFT = 180
+RIGHT = 0
+TILE = 16
+
+#setup main screen
+screen = Screen()
+screen.bgcolor("black")
+screen.setup(WIDTH, HEIGHT)
+
+score = Scoreboard(HEIGHT, WIDTH)
+screen.tracer(0)
+
+def dotted(long):
+    line = Turtle()
+    line.penup()
+    line.color("white")
+    line.hideturtle()
+    line.setpos(0, HEIGHT/2)
+    line.setheading(DOWN)
+    while line.ycor() > -(HEIGHT/2):
+        line.pendown()
+        line.fd(long)
+        line.up()
+        line.fd(long)
+        line.down()
+
+def move():
+    line.fd(100)
+    line.left(90)
+
+def main():
+    dotted(10)
+    score.draw_score()
+    while True:
+        screen.update()
+        score.increase_scorep1()
+        score.increase_scorep2()
+        time.sleep(0.2)
+
+score = Scoreboard(HEIGHT, WIDTH)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Strg+F8 to toggle the breakpoint.
+screen.listen()
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+main()
+screen.exitonclick()
