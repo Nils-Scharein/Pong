@@ -2,6 +2,8 @@ import time
 from turtle import Turtle, Screen
 from Scoreboard import Scoreboard
 from Ball import Ball
+from Player import Player
+
 #setup variablen
 HEIGHT = 800
 WIDTH = 1200
@@ -9,7 +11,8 @@ UP = 90
 DOWN = 270
 LEFT = 180
 RIGHT = 0
-TILE = 16
+DISTANCE = 50
+
 
 #setup main screen
 screen = Screen()
@@ -33,26 +36,32 @@ def dotted(long):
         line.fd(long)
         line.down()
 
-def move():
-    line.fd(100)
-    line.left(90)
+
+
+def set_heading():
+    screen.onkeypress(player1.up(), "w")
+    screen.onkeypress(player1.down(), "s")
+    screen.onkeypress(player2.up(), "UP")
+    screen.onkeypress(player2.down(), "DOWN")
+
+
+score = Scoreboard(HEIGHT, WIDTH)
+ball = Ball(HEIGHT, WIDTH)
+player1 = Player(HEIGHT, WIDTH, (-(WIDTH / 2) + DISTANCE, 0))
+player2 = Player(HEIGHT, WIDTH, ((WIDTH / 2) - DISTANCE, 0))
 
 def main():
     dotted(10)
     score.draw_score()
+    ball.random_start()
+    set_heading()
     while True:
         screen.update()
-        ball.move()
-        score.increase_scorep1()
-        score.increase_scorep2()
-        time.sleep(0.1)
-
-score = Scoreboard(HEIGHT, WIDTH)
-ball = Ball()
-
+        ball.move(10)
+        ball.score_goal(score)
+        ball.change_directions()
+        time.sleep(0.02)
 
 screen.listen()
-
-
 main()
 screen.exitonclick()
