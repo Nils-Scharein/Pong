@@ -12,6 +12,7 @@ DOWN = 270
 LEFT = 180
 RIGHT = 0
 DISTANCE = 50
+WID = 15
 
 
 #setup main screen
@@ -39,28 +40,32 @@ def dotted(long):
 
 
 def set_heading():
-    screen.onkeypress(player1.up(), "w")
-    screen.onkeypress(player1.down(), "s")
-    screen.onkeypress(player2.up(), "UP")
-    screen.onkeypress(player2.down(), "DOWN")
+    screen.onkeypress(player1.up, "w")
+    screen.onkeypress(player1.down, "s")
+    screen.onkeypress(player2.up, "Up")
+    screen.onkeypress(player2.down, "Down")
 
 
 score = Scoreboard(HEIGHT, WIDTH)
 ball = Ball(HEIGHT, WIDTH)
-player1 = Player(HEIGHT, WIDTH, (-(WIDTH / 2) + DISTANCE, 0))
-player2 = Player(HEIGHT, WIDTH, ((WIDTH / 2) - DISTANCE, 0))
+player1 = Player(HEIGHT, WIDTH, (-(WIDTH / 2) + DISTANCE, 0), WID)
+player2 = Player(HEIGHT, WIDTH, ((WIDTH / 2) - DISTANCE, 0), WID)
 
 def main():
     dotted(10)
     score.draw_score()
-    ball.random_start()
     set_heading()
     while True:
         screen.update()
         ball.move(10)
         ball.score_goal(score)
-        ball.change_directions()
-        time.sleep(0.02)
+        time.sleep(ball.movespeed)
+
+        if ball.ycor() > (HEIGHT/2 - 20) or ball.ycor() < (-HEIGHT/2 + 20):
+            ball.bounce_y()
+
+        if ball.distance(player2.pos()) < WID * 10 and ball.xcor() > WIDTH/2 - 80 or ball.distance(player1.pos()) < WID * 10 and ball.xcor() < -WIDTH/2 + 80:
+            ball.bounce_x()
 
 screen.listen()
 main()
