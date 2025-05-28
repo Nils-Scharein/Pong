@@ -1,6 +1,6 @@
 # 🕹️ Pong – Day 22 Project
 
-This is a classic Pong game built using **Python** and the **turtle graphics module** as part of [Day 22](https://www.udemy.com/course/100-days-of-code/?couponCode=ST19MT280525G2)
+This is a classic Pong game built using **Python** and the **turtle graphics module** as part of [Day 22](https://www.udemy.com/course/100-days-of-code/?couponCode=ST19MT280525G2) of the Course 100 Days of Code: The Complete Python Pro Bootcamp. 
 
 ## 🎮 Gameplay
 
