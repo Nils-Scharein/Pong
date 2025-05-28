@@ -21,3 +21,9 @@ Two players control paddles on either side of the screen. The goal is to prevent
 🔗 **Note:**  
 This mini-project is part of a larger learning journey. You can find the full project repository with all 100 days of code progress here:  
 👉 [Nils-Scharein/100DaysOfPython](https://github.com/Nils-Scharein/100DaysOfPython)
+
+## Preview
+
+Here's an animated preview of how the application works:
+
+![pongDemo](./Demo/pongDemo.gif)
